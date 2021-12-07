@@ -4,7 +4,7 @@ import './App.css';
 import PropTypes from "prop-types"
 import React from 'react';
 import axios from "axios";
-import Movie from "./Movie";
+import Movie from "./components/Movie";
 
 const Food = ({name, picture, rating}) => {
   console.log(name)
@@ -77,12 +77,16 @@ class App extends React.Component {
     this.setState(current => ({count: current.count - 1}))
   }
   getMovies = async () => {
+    console.log("getMovies...")
     const {
       data: {
-        data: {movies}
+        data: {
+          movies
+        }
       }
     } = await axios.get("https://yts-proxy.now.sh/list_movies.json")
-    this.setState({movies, isLoading: false})
+    this.setState({movies: movies, isLoading: false})
+    console.log(movies)
   }
   componentDidMount() {
     console.log("redered...")
@@ -96,13 +100,25 @@ class App extends React.Component {
   }
   render() {
     console.log("rendering")
-    const { isLoading } = this.state;
+    const { isLoading, movies } = this.state;
     return (
-      <div>{isLoading 
-        ? "Loading" 
-        : movies.map(movie => {
-          console.log(movie);
-        })}</div>
+      <section>
+        {isLoading
+         ? "Loading..." 
+         : movies.map(movie => {
+             return (
+              <Movie 
+                key={movie.id} 
+                year={movie.year} 
+                title={movie.title} 
+                summary={movie.summary} 
+                poster={movie.medium_cover_image} 
+                genres={movie.genres}
+              />
+             )
+          })
+        }
+      </section>
     )
   }
 }

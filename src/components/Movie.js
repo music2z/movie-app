@@ -1,19 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getByTitle } from "@testing-library/react";
+import "./Movie.css"
 
-function Movie(id, year, title, summary, poster){
+function Movie({year, title, summary, poster, genres}){
     return(
-        <h1>111</h1>
+        <div>
+            <img src={poster} />
+            <h1>{title}</h1>
+            <h5>{year}</h5>
+            <ul>
+                {genres.map((genre, index) => (
+                    <li key={index}>{genre}</li>
+                ))}
+            </ul>
+            <p>{summary.slice(0, 140)}...</p>
+        </div>
     )
 }
 
 Movie.propTypes = {
-    id: PropTypes.number.isRequired,
     year: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    summary: PropTypes.string.isRequired,
-    poster: PropTypes.string.isRequired
+    summary: PropTypes.string,
+    poster: PropTypes.string.isRequired,
+    genres: PropTypes.array.isRequired
 };
 
 export default Movie;
