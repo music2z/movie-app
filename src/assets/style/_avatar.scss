@@ -1,0 +1,56 @@
+@import "var";
+@import "mixin";
+
+.avatar {
+	@include inlineFlexCenter;
+	position: relative;
+	&-shape {
+		@include inlineFlexCenter;
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		background-color: $primary-hover;
+		.txt {
+			color: $gray90;
+			font-size: 14px;
+		}
+	}
+	&-info {
+		margin-left: 10px;
+		.name {
+			display: block;
+			color: $gray90;
+			font-size: 13px;
+			font-weight: 500;
+		}
+		.email {
+			display: block;
+			color: $gray50;
+			font-size: 12px;
+		}
+	}
+	.btn-avatar-dropdown {
+		position: relative;
+		padding-right: 40px;
+		text-align: left;
+		&::after {
+			content: "";
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 24px;
+			height: 24px;
+			@include iconUrl(icon-chevron);
+			transform: rotate(90deg);
+			transition: all 0.2s;
+		}
+		&.active::after {
+			transform: rotate(-90deg);
+		}
+	}
+	.ui-popover {
+		position: absolute;
+		right: 0;
+		top: 40px;
+	}
+}

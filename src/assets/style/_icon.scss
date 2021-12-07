@@ -1,0 +1,100 @@
+@import "var";
+@import "mixin";
+
+i[class^="icon-"],
+i[class^="logo-"] {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+// icon은 SVG
+.icon-alert {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-alert);
+}
+.icon-url {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-calendar);
+}
+.icon-txt-link {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-txt-link);
+}
+.icon-password-visible {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-password-visible);
+}
+.icon-password-hidden {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-password-hidden);
+}
+.icon-download {
+	width: 16px;
+	height: 16px;
+	@include iconUrl(icon-download);
+}
+.icon-close {
+	width: 15px;
+	height: 14px;
+	@include iconUrl(icon-close);
+}
+.icon-logo-140 {
+	width: 140px;
+	height: 20px;
+	@include iconUrl(icon-logo-140);
+}
+.icon-chevron {
+	width: 24px;
+	height: 24px;
+	@include iconUrl(icon-chevron);
+}
+.icon-user-circle {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-user-circle);
+}
+.icon-check-on {
+	width: 24px;
+	height: 24px;
+	@include iconUrl(icon-check-on);
+}
+.icon-profit {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-profit);
+}
+.icon-client-group {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-client-group);
+}
+.icon-pie-chart {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-pie-chart);
+}
+.icon-marketing {
+	width: 20px;
+	height: 20px;
+	@include iconUrl(icon-marketing);
+}
+.icon-exclamation-circle {
+	width: 15px;
+	height: 16px;
+	@include iconUrl(icon-exclamation-circle);
+}
+.icon-go-to-top {
+	width: 14px;
+	height: 16px;
+	@include iconUrl(icon-go-to-top);
+}
+.icon-exclamation-circle-40 {
+	width: 41px;
+	height: 40px;
+	@include iconUrl(icon-exclamation-circle-40);
+}

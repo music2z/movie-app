@@ -1,0 +1,403 @@
+@import "var";
+@import "mixin";
+
+// input[type='date']::-webkit-datetime-edit-text {
+// 	-webkit-appearance: none;
+// 	display: none;
+// }
+// input[type='date']::-webkit-datetime-edit-month-field {
+// 	-webkit-appearance: none;
+// 	display: none;
+// }
+// input[type='date']::-webkit-datetime-edit-day-field {
+// 	-webkit-appearance: none;
+// 	display: none;
+// }
+// input[type='date']::-webkit-datetime-edit-year-field {
+// 	-webkit-appearance: none;
+// 	display: none;
+// }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+
+.ui-checkbox,
+.ui-radio {
+	input[type="checkbox"],
+	input[type="radio"] {
+		position: absolute;
+		opacity: 0;
+		-webkit-appearance: none;
+		appearance: none;
+	}
+	span {
+		display: inline-block;
+		padding-left: 28px;
+		font-size: 13px;
+		cursor: pointer;
+	}
+}
+
+// Checkbox
+.ui-checkbox {
+	display: inline-block;
+	position: relative;
+	transition: all 0.2s;
+	&:hover span::before {
+		border-color: $primary;
+	}
+	&:hover input:disabled {
+		border: 0;
+	}
+
+	input:checked + span {
+		&::before {
+			content: "";
+			position: absolute;
+			border: 0;
+			background-color: $primary;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			left: 7px;
+			top: 3px;
+			width: 5px;
+			height: 10px;
+			border: solid $gray0;
+			border-width: 0 2px 2px 0;
+			transform: rotate(45deg);
+		}
+	}
+	input:disabled + span {
+		cursor: not-allowed;
+		&::before {
+			border: 0;
+			background-color: $gray30;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			left: 7px;
+			top: 3px;
+			width: 5px;
+			height: 10px;
+			border: solid $gray0;
+			border-width: 0 2px 2px 0;
+			transform: rotate(45deg);
+		}
+	}
+	span::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 18px;
+		height: 18px;
+		border-radius: 4px;
+		border: 2px solid $gray40;
+	}
+}
+
+// Radio
+.ui-radio {
+	display: inline-block;
+	position: relative;
+	transition: all 0.2s;
+	&:hover span::before {
+		border-color: $primary;
+	}
+	&:hover input:disabled {
+		border: 0;
+	}
+
+	input:checked + span {
+		&::before {
+			content: "";
+			position: absolute;
+			border: 2px solid $primary;
+		}
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 4px;
+			top: 4px;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: $primary;
+		}
+	}
+	input:disabled + span {
+		cursor: not-allowed;
+		&::before {
+			border: 0;
+			background-color: $gray30;
+		}
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			left: 4px;
+			top: 4px;
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			background-color: $gray0;
+		}
+	}
+	span::before {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		border: 2px solid $gray40;
+	}
+}
+
+// file 업로드
+.ui-file {
+	display: inline-block;
+	position: relative;
+	max-width: 100%;
+	label {
+		display: block;
+		cursor: pointer;
+	}
+	input {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 0;
+		height: 0;
+		padding: 0;
+		opacity: 0;
+	}
+	&.size-30 {
+		height: 30px;
+	}
+}
+
+// Dropdown (Select Box)
+.ui-dropdown {
+	position: relative;
+	&-toggle {
+		// display: inline-flex;
+		// align-items: center;
+		min-width: 100px;
+		width: 100%;
+		height: 36px;
+		padding: 0 32px 0 12px;
+		border-radius: 4px;
+		@include borderStyle;
+		background-color: $gray0;
+		color: $gray60;
+		font-size: 13px;
+		text-align: left;
+		line-height: 36px;
+		@include ellipsis;
+		&::after {
+			content: "";
+			position: absolute;
+			right: 8px;
+			top: 8px;
+			width: 20px;
+			height: 20px;
+			@include iconUrl(icon-arrow);
+			transition: all 0.2s;
+		}
+	}
+	&-menu {
+		display: none;
+		z-index: 10;
+		position: absolute;
+		top: 33px;
+		left: 0;
+		width: 100%;
+		border-bottom-left-radius: 4px;
+		border-bottom-right-radius: 4px;
+		@include borderStyle;
+		border-top: 0;
+		background-color: $gray0;
+		color: $gray60;
+	}
+	&.show {
+		.ui-dropdown-toggle {
+			color: $gray60;
+			font-size: 13px;
+			&::after {
+				transform: rotate(-180deg);
+			}
+		}
+		.ui-dropdown-menu {
+			display: block;
+			li {
+				&:hover .dropdown-item {
+					background-color: $primary;
+					color: $gray0;
+				}
+			}
+			.dropdown-item {
+				display: inline-flex;
+				align-items: center;
+				width: 100%;
+				height: 34px;
+				padding: 0 12px;
+				font-size: 13px;
+			}
+		}
+	}
+	&.disabled {
+		.ui-dropdown-toggle {
+			@include disableStyle;
+		}
+		&.show {
+			.ui-dropdown-toggle::after {
+				transform: none;
+			}
+		}
+		.ui-dropdown-menu {
+			visibility: hidden;
+		}
+	}
+	&.size-30 {
+		.ui-dropdown-toggle {
+			height: 30px;
+			font-size: 12px;
+			line-height: 30px;
+			&::after {
+				top: 5px;
+			}
+		}
+		.ui-dropdown-menu {
+			top: 28px;
+			.dropdown-item {
+				height: 30px;
+				font-size: 12px;
+			}
+		}
+	}
+}
+
+// Text Input
+.text-input {
+	position: relative;
+	.ui-input {
+		width: 100%;
+		height: 40px;
+		padding: 0 14px;
+		border-radius: 4px;
+		@include borderStyle;
+		background-color: $gray0;
+		letter-spacing: -0.5px;
+		line-height: 1.5;
+
+		&:focus {
+			border-color: $primary;
+		}
+		&::placeholder {
+			color: $gray50;
+		}
+		&:disabled,
+		.disabled {
+			@include disableStyle;
+			&::placeholder {
+				color: $gray40;
+			}
+		}
+		&.size-36 {
+			height: 36px;
+		}
+	}
+	&.password {
+		.ui-input {
+			padding-right: 40px;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			right: 8px;
+			top: 8px;
+			width: 20px;
+			height: 20px;
+			@include iconUrl(icon-password-hidden);
+			cursor: pointer;
+		}
+		&.visible::after {
+			@include iconUrl(icon-password-visible);
+		}
+	}
+	&.calendar {
+		width: 120px;
+		&::after {
+			content: "";
+			position: absolute;
+			right: 8px;
+			top: 10px;
+			width: 20px;
+			height: 20px;
+			@include iconUrl(icon-calendar);
+			cursor: pointer;
+		}
+	}
+	.caption-text {
+		display: block;
+		margin-top: 8px;
+	}
+	&.error {
+		.ui-input {
+			border-color: $error;
+			background-color: rgba($error, 0.1);
+			&::placeholder {
+				color: $error;
+			}
+		}
+		input[type="password"],
+		input[type="calendar"].ui-input {
+			background-color: $gray0;
+			&::placeholder {
+				color: $gray80;
+			}
+		}
+	}
+	.error-text {
+		display: block;
+		margin-top: 8px;
+		color: $error;
+		font-size: 12px;
+	}
+}
+
+// Textarea
+.ui-textarea {
+	width: 100%;
+	height: 150px;
+	padding: 10px;
+	border-radius: 8px;
+	@include borderStyle;
+	background-color: $gray0;
+	font-size: 14px;
+	overflow-y: auto;
+	&:focus {
+		border-color: $primary;
+		outline: $primary;
+	}
+	&::placeholder {
+		color: $gray60;
+	}
+}
+
+input[readonly="readonly"],
+textarea[readonly="readonly"] {
+	background-color: $gray0;
+	color: $gray80;
+}

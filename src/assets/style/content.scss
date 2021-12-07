@@ -1,0 +1,62 @@
+/////////////////////////////////////////////////////////////////
+// 컨텐츠
+/////////////////////////////////////////////////////////////////
+
+section:not(:last-child) {
+	margin-bottom: 30px;
+}
+
+.btn-area {
+	margin-top: 10px;
+	text-align: center;
+	.ui-btn {
+		width: 150px;
+	}
+}
+.icon-exclamation-circle {
+	margin-top: -2px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+// 실적분석
+.sa-analysis {
+}
+// 고객분석
+.cu-analysis {
+}
+
+.chart-list {
+	display: flex;
+	flex-wrap: wrap;
+	width: 100%;
+	.item {
+		width: calc(50% - 10px);
+		padding: 15px 16px;
+		margin: 5px;
+		background-color: $gray10;
+	}
+}
+.chart-name-wrap {
+	display: flex;
+	.chart-name {
+		font-size: 14px;
+		font-weight: 700;
+	}
+	.right {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		flex: 1;
+	}
+}
+// 활동분석
+.jo-analysis {
+}
+
+// 마케팅 효과분석
+.mk-analysis {
+}
+
+// 시싀템 관리
+.sy-analysis {
+}

@@ -1,0 +1,277 @@
+@import "var";
+@import "mixin";
+
+///////////////////////////////////////////////////////////////////////////
+// 디자인 가이드 기준으로 작업
+///////////////////////////////////////////////////////////////////////////
+
+// Basic Button
+.ui-btn {
+	@include inlineFlexCenter;
+	min-width: 38px;
+	height: 40px;
+	padding: 5px 8px;
+	@include borderStyle;
+	border-radius: 4px;
+	background-color: $gray0;
+	color: $gray60;
+	text-align: center;
+	&:hover {
+		border-color: $gray70;
+	}
+	&:active,
+	&:focus {
+		border-color: $gray50;
+	}
+	&.disabled {
+		border-color: $gray30;
+	}
+	&.primary {
+		border: 0;
+		background-color: $primary;
+		color: $gray0;
+		&:hover {
+			background-color: $primary-hover;
+		}
+		&:active,
+		&:focus {
+			background-color: $primary-pressed;
+		}
+		&.disabled {
+			background-color: $gray30;
+		}
+	}
+
+	&-outline {
+		&.primary {
+			border: 1px solid $primary;
+			color: $primary;
+			background-color: $gray0;
+			&:hover {
+				border-color: $primary-hover;
+				background-color: $gray0;
+				color: $primary-hover;
+			}
+			&:active,
+			&:focus {
+				border-color: $primary-pressed;
+				background-color: $gray0;
+				color: $primary-pressed;
+			}
+			&.disabled {
+				@include borderStyle;
+				background-color: $gray0;
+				color: $gray40;
+			}
+		}
+	}
+	&.round {
+		padding: 0 18px;
+		border-radius: 50px;
+	}
+	&.size-28 {
+		height: 28px;
+		font-size: 12px;
+	}
+	&.size-30 {
+		height: 30px;
+		font-size: 12px;
+	}
+	&.size-80 {
+		height: 80px;
+		font-size: 16px;
+		font-weight: 700;
+	}
+	&.with-icon {
+		&.left {
+			i[class^="icon-"] {
+				margin-right: 4px;
+			}
+		}
+		&.right {
+			i[class^="icon-"] {
+				margin-left: 4px;
+			}
+		}
+	}
+}
+
+// Button Group
+.ui-btn-group {
+	display: flex;
+	align-items: center;
+	li {
+		position: relative;
+		&:first-child .ui-btn {
+			border-radius: 4px 0 0 4px;
+			border-right: 0;
+		}
+		&:last-child .ui-btn {
+			border-radius: 0 4px 4px 0;
+			border-left: 0;
+		}
+		&.on {
+			.ui-btn {
+				color: $primary;
+			}
+			&:first-child::after,
+			&:last-child::after {
+				z-index: 1;
+				content: "";
+				display: block;
+				position: absolute;
+				left: 0;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				border: 1px solid $primary;
+				cursor: pointer;
+			}
+			&:not(:first-child)::after,
+			&:not(:last-child)::after {
+				z-index: 1;
+				content: "";
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				border: 1px solid $primary;
+				cursor: pointer;
+			}
+			&:first-child::after {
+				left: 0;
+				right: -1px;
+				border-radius: 4px 0 0 4px;
+			}
+			&:last-child::after {
+				left: -1px;
+				right: 0;
+				border-radius: 0 4px 4px 0;
+			}
+		}
+	}
+	.ui-btn {
+		padding: 0 16px;
+		border-radius: 0;
+		&:hover {
+			border-color: $gray30;
+			background-color: rgba(0, 124, 255, 0.05);
+		}
+		&:focus,
+		&:active {
+			@include borderStyle;
+		}
+	}
+}
+
+// Text Button
+.ui-btn-text {
+	display: inline-block;
+	font-size: 13px;
+	text-decoration: underline;
+	&.primary {
+		color: $primary;
+	}
+	&:active {
+		color: $gray90;
+	}
+	&.with-icon {
+		text-decoration: none;
+	}
+}
+
+// Toolge Button
+.ui-switcher {
+	display: inline-block;
+	position: relative;
+	height: 40px;
+	input {
+		position: relative;
+		width: 120px;
+		height: 40px;
+		border-radius: 20px;
+		outline: none;
+		background-color: $gray20;
+		font-size: 14px;
+		transition: 0.25s -0.1s;
+		appearance: none;
+		cursor: pointer;
+		&:before,
+		&:after {
+			z-index: 2;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			color: $gray0;
+		}
+		&:before {
+			content: "ON";
+			left: 20px;
+		}
+		&:after {
+			content: "OFF";
+			right: 20px;
+		}
+		&:checked {
+			&::before {
+				color: $gray0;
+				transition: color 0.2s;
+			}
+			&::after {
+				color: $gray60;
+				transition: color 0.2s;
+			}
+			& + label {
+				left: 0;
+				right: 56px;
+				height: 40px;
+				background-color: $primary;
+				transition: left 0.2s, right 0.2s 0.1s;
+			}
+			&:hover::before {
+				color: $gray0;
+			}
+			&:hover::after {
+				color: $primary;
+			}
+		}
+		&:not(:checked) {
+			background-color: $gray20;
+			transition: background 0.5s -0.1s;
+			&:before {
+				color: $gray60;
+			}
+			&:after {
+				color: $gray0;
+			}
+			& + label {
+				left: 60px;
+				right: 0;
+				height: 40px;
+				background-color: $primary;
+				transition: left 0.2s 0.1s, right 0.2s, background 0.35s -0.1s;
+			}
+			&:hover::before {
+				color: $primary;
+			}
+			&:hover::after {
+				color: $gray0;
+			}
+		}
+		// &:hover::before,
+		// &:hover::after {
+		// 	color: $primary;
+		// }
+		// &:not(:checked):hover::before,
+		// &:not(:checked):hover::after {
+		// 	color: $gray0;
+		// }
+	}
+	label {
+		z-index: 1;
+		position: absolute;
+		border-radius: 20px;
+	}
+}
